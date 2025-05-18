@@ -5,7 +5,12 @@ const fs = require('fs');
 const app = express();
 const port = 3000;
 
+const ADMIN_PIN = "8642";
 const votesFile = './votes.json';
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(express.static('public'));
 
 // Load existing votes from JSON file if it exists
 let votes = {};
@@ -19,22 +24,21 @@ if (fs.existsSync(votesFile)) {
   }
 }
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.static('public'));
-
 // Save votes to file
 function saveVotes() {
   fs.writeFileSync(votesFile, JSON.stringify(votes, null, 2));
 }
 
-// Handle votes
+// Handle vote submissions with PIN validation
 app.post('/vote', (req, res) => {
-  const { teacher } = req.body;
+  const { teacher, pin } = req.body;
 
-  if (!teacher) {
-    return res.status(400).json({ error: 'Missing teacher name' });
+  if (!teacher || !pin) {
+    return res.status(400).json({ error: 'Missing teacher or PIN' });
+  }
+
+  if (pin !== ADMIN_PIN) {
+    return res.status(403).json({ error: 'Invalid PIN' });
   }
 
   if (!votes[teacher]) {
@@ -45,15 +49,15 @@ app.post('/vote', (req, res) => {
   saveVotes();
 
   console.log(`✅ Vote recorded for ${teacher}`);
-  res.json({ success: true });
+  res.json({ success: true, message: `Vote counted for ${teacher}` });
 });
 
-// Get current results
+// Get current vote results
 app.get('/results', (req, res) => {
   res.json(votes);
 });
 
-// Start the server
+// Start server
 app.listen(port, () => {
   console.log(`✅ Server running at http://localhost:${port}`);
 });

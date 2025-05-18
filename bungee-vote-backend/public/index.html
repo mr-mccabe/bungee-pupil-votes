@@ -4,112 +4,110 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bungee Jump Teacher Vote</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Roboto:wght@400;700&display=swap');
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Staatliches&family=Roboto:wght@400;700&display=swap');
 
-  :root {
-    --jungle-green: #2e7d32;
-    --jungle-dark: #1b5e20;
-    --gold: #fdd835;
-    --sand: #f9f5ec;
-    --text: #1a1a1a;
-    --card-bg: #ffffff;
-    --border: #c5e1a5;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--sand);
-    color: var(--text);
-    margin: 0;
-    padding: 2rem;
-    text-align: center;
-    background-image: url('https://www.transparenttextures.com/patterns/green-dust-and-scratches.png');
-  }
-
-  h1 {
-    font-family: 'Staatliches', cursive;
-    font-size: 2.5rem;
-    color: var(--jungle-green);
-    margin-bottom: 0.5rem;
-    text-shadow: 1px 1px 0 #fff;
-  }
-
-  h2 {
-    font-family: 'Staatliches', cursive;
-    font-size: 1.8rem;
-    color: var(--gold);
-    margin-top: 0;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 2px var(--jungle-dark);
-  }
-
-  p {
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  #teachers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-
-  .teacher {
-    background-color: var(--card-bg);
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 1.2rem;
-    width: 240px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-    position: relative;
-  }
-
-  .teacher:hover {
-    transform: scale(1.05);
-  }
-
-  .teacher h3 {
-    margin: 0 0 1rem;
-    font-size: 1.2rem;
-    color: var(--jungle-dark);
-    font-weight: bold;
-  }
-
-  button {
-    background-color: var(--gold);
-    color: #333;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    transition: background-color 0.2s ease;
-  }
-
-  button:hover {
-    background-color: #ffe700;
-  }
-
-  @media (max-width: 600px) {
-    #teachers {
-      flex-direction: column;
-      align-items: center;
+    :root {
+      --jungle-green: #2e7d32;
+      --jungle-dark: #1b5e20;
+      --gold: #fdd835;
+      --sand: #f9f5ec;
+      --text: #1a1a1a;
+      --card-bg: #ffffff;
+      --border: #c5e1a5;
     }
-  }
-</style>
 
+    * {
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--sand);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem;
+      text-align: center;
+      background-image: url('https://www.transparenttextures.com/patterns/green-dust-and-scratches.png');
+    }
+
+    h1 {
+      font-family: 'Staatliches', cursive;
+      font-size: 2.5rem;
+      color: var(--jungle-green);
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    h2 {
+      font-family: 'Staatliches', cursive;
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 2px var(--jungle-dark);
+    }
+
+    p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    #teachers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .teacher {
+      background-color: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      width: 240px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+
+    .teacher:hover {
+      transform: scale(1.05);
+    }
+
+    .teacher h3 {
+      margin: 0 0 1rem;
+      font-size: 1.2rem;
+      color: var(--jungle-dark);
+      font-weight: bold;
+    }
+
+    button {
+      background-color: var(--gold);
+      color: #333;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #ffe700;
+    }
+
+    @media (max-width: 600px) {
+      #teachers {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -131,7 +129,6 @@
     "Mr. McCabe", "Ms. Dornan", "Ms. Dar"
   ];
 
-  const ADMIN_PIN = "8642";
   const container = document.getElementById("teachers");
 
   teachers.forEach((teacher) => {
@@ -147,27 +144,25 @@
     button.addEventListener("click", () => {
       const pin = prompt("Enter teacher PIN to confirm payment for vote has been received:");
 
-      if (pin === ADMIN_PIN) {
-        fetch('http://localhost:3000/vote', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ teacher: teacher })
-        })
-        .then(response => {
-          if (!response.ok) {
-            return response.json().then(err => { throw new Error(err.error); });
-          }
-          return response.json();
-        })
-        .then(() => {
-          alert(`Vote recorded for ${teacher}!`);
-        })
-        .catch(err => {
-          alert(`Error recording vote: ${err.message}`);
-        });
-      } else {
-        alert("Incorrect PIN. Vote not counted.");
-      }
+      if (!pin) return;
+
+      fetch('/vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ teacher, pin })
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => { throw new Error(err.error); });
+        }
+        return response.json();
+      })
+      .then(data => {
+        alert(data.message || `Vote recorded for ${teacher}!`);
+      })
+      .catch(err => {
+        alert(`Error recording vote: ${err.message}`);
+      });
     });
   });
 </script>
