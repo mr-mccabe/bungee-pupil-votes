@@ -4,34 +4,107 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vote Counts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-      text-align: center;
+    :root {
+      --jungle-green: #2e7d32;
+      --jungle-dark: #1b5e20;
+      --gold: #fdd835;
+      --sand: #f9f5ec;
+      --text: #1a1a1a;
+      --card-bg: #ffffff;
+      --border: #c5e1a5;
     }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--sand);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem;
+      text-align: center;
+      background-image: url('https://www.transparenttextures.com/patterns/green-dust-and-scratches.png');
+    }
+
+    h1 {
+      font-family: 'Staatliches', cursive;
+      font-size: 2.5rem;
+      color: var(--jungle-green);
+      text-shadow: 1px 1px 0 #fff;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: 'Staatliches', cursive;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 2px var(--jungle-dark);
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      background-color: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
+
     th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      font-size: 1rem;
     }
+
     th {
-      background-color: #f2f2f2;
+      background-color: var(--jungle-green);
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
     #voteTable {
-      margin-top: 30px;
+      max-width: 700px;
+      margin: 0 auto;
     }
+
     button {
+      background-color: var(--gold);
+      color: #333;
+      border: none;
       padding: 10px 20px;
-      font-size: 16px;
-      margin-top: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 6px;
+      margin-top: 20px;
       cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #ffe700;
+    }
+
+    @media (max-width: 600px) {
+      table {
+        font-size: 0.9rem;
+      }
+
+      th, td {
+        padding: 10px 12px;
+      }
     }
   </style>
 </head>
@@ -71,7 +144,6 @@
           return;
         }
 
-        // Sort descending by votes
         entries.sort((a, b) => b[1] - a[1]);
 
         for (const [teacher, count] of entries) {
@@ -87,7 +159,6 @@
 
   refreshBtn.onclick = fetchAndDisplayVotes;
 
-  // Load votes on page load
   fetchAndDisplayVotes();
 </script>
 
