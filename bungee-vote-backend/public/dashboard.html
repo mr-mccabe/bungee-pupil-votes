@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vote Counts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    #voteTable {
+      margin-top: 30px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Highland Fling Bungee Votes</h1>
+
+<div id="voteTable">
+  <h2>Current Vote Counts</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Teacher</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+    <tbody id="resultsBody">
+      <!-- Results go here -->
+    </tbody>
+  </table>
+  <button id="refreshBtn">Refresh</button>
+</div>
+
+<script>
+  const resultsBody = document.getElementById('resultsBody');
+  const refreshBtn = document.getElementById('refreshBtn');
+
+  function fetchAndDisplayVotes() {
+    fetch('/results')
+      .then(response => response.json())
+      .then(data => {
+        resultsBody.innerHTML = '';
+        const entries = Object.entries(data);
+
+        if (entries.length === 0) {
+          resultsBody.innerHTML = '<tr><td colspan="2">No votes yet</td></tr>';
+          return;
+        }
+
+        // Sort descending by votes
+        entries.sort((a, b) => b[1] - a[1]);
+
+        for (const [teacher, count] of entries) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${teacher}</td><td>${count}</td>`;
+          resultsBody.appendChild(tr);
+        }
+      })
+      .catch(() => {
+        resultsBody.innerHTML = '<tr><td colspan="2">Error fetching results</td></tr>';
+      });
+  }
+
+  refreshBtn.onclick = fetchAndDisplayVotes;
+
+  // Load votes on page load
+  fetchAndDisplayVotes();
+</script>
+
+</body>
+</html>

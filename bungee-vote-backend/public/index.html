@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bungee Jump Teacher Vote</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    .teacher {
+      margin: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      display: inline-block;
+      width: 220px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>I'm A Technologies Teacher Get Me Out of Here!</h1>
+<h2>Highland Fling Bushtucker Trial</h2>
+<p>
+  Vote for the teacher you want to see take on the Highland Fling Bungee Jump!<br/>
+  Each vote costs £1.<br/><br/>
+  A teacher must confirm payment by entering the PIN to count the vote.<br/>
+  All proceeds go to West Calder Cares.
+</p>
+
+<div id="teachers"></div>
+
+<script>
+  const teachers = [
+    "Mr. Murphy", "Ms. Kane", "Miss. Comrie",
+    "Mrs. Walker", "Mrs. Gallagher", "Mr. Martin",
+    "Mr. McCabe", "Ms. Dornan", "Ms. Dar"
+  ];
+
+  const ADMIN_PIN = "8642";
+  const container = document.getElementById("teachers");
+
+  teachers.forEach((teacher) => {
+    const div = document.createElement("div");
+    div.className = "teacher";
+    div.innerHTML = `
+      <h3>${teacher}</h3>
+      <button>Vote for ${teacher}</button>
+    `;
+    container.appendChild(div);
+
+    const button = div.querySelector("button");
+    button.addEventListener("click", () => {
+      const pin = prompt("Enter admin PIN to confirm vote:");
+
+      if (pin === ADMIN_PIN) {
+        fetch('http://localhost:3000/vote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ teacher: teacher })
+        })
+        .then(response => {
+          if (!response.ok) {
+            return response.json().then(err => { throw new Error(err.error); });
+          }
+          return response.json();
+        })
+        .then(() => {
+          alert(`Vote recorded for ${teacher}!`);
+        })
+        .catch(err => {
+          alert(`Error recording vote: ${err.message}`);
+        });
+      } else {
+        alert("Incorrect PIN. Vote not counted.");
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
